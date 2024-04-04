@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/AlexMarquesAlves/pass-in-nodejs/issues"
   },
-  "homepage": "https://github.com/AlexMarquesAlves/pass-in-nodejs#readme"
+  "homepage": "https://github.com/AlexMarquesAlves/pass-in-nodejs#readme",
+  "devDependencies": {
+    "@types/node": "^20.12.4",
+    "typescript": "^5.4.4"
+  }
 }
