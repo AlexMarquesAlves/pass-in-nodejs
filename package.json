@@ -1,0 +1,19 @@
+{
+  "name": "pass-in-nodejs",
+  "version": "1.0.0",
+  "description": "Back-end em Node.js desenvolvido durante o NLW Unite da Rocketseat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexMarquesAlves/pass-in-nodejs.git"
+  },
+  "author": "¡Duque",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexMarquesAlves/pass-in-nodejs/issues"
+  },
+  "homepage": "https://github.com/AlexMarquesAlves/pass-in-nodejs#readme"
+}
