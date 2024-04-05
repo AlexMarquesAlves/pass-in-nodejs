@@ -21,11 +21,12 @@ app.post("/events", async (req, res) => {
     data: {
       title: data.title,
       details: data.details,
+      maximumAttendees: data.maximumAttendees,
       slug: new Date().toISOString(),
     },
   });
 
-  return { event: event.id };
+  return res.status(201).send({ event: event.id });
 });
 
 app.listen({ port }).then(() => {
