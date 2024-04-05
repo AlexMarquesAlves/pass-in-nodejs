@@ -1,8 +1,9 @@
+import "dotenv/config";
 import { log } from "console";
 import fastify from "fastify";
 
 const app = fastify();
-const port = 3333;
+const port = process.env.PORT || 3333;
 
 app.get("/", async (req, res) => {
   return "Hello NLW Unite!";

@@ -4,7 +4,7 @@
   "description": "Back-end em Node.js desenvolvido durante o NLW Unite da Rocketseat",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --env-file .env src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "fastify": "^4.26.2"
   }
 }
