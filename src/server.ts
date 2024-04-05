@@ -18,7 +18,7 @@ app.post("/events", async (req, res) => {
 
   const data = createEventSchema.parse(req.body);
 
-  prisma.event.create({
+  const event = await prisma.event.create({
     data: {
       title: data.title,
       details: data.details,
@@ -26,7 +26,7 @@ app.post("/events", async (req, res) => {
     },
   });
 
-  return "Hello NLW Unite!";
+  return { event: event.id };
 });
 
 app.listen({ port }).then(() => {
