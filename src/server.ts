@@ -1,10 +1,9 @@
-import "dotenv/config";
 import fastify from "fastify";
 import { z } from "zod";
 import { PrismaClient } from "@prisma/client";
 
 const app = fastify();
-const port = process.env.PORT || 3333;
+const port = 3333;
 const prisma = new PrismaClient({
   log: ["query"],
 });

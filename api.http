@@ -1,8 +1,8 @@
-POST http://localhost:5000/events
+POST http://localhost:3333/events
 Content-Type: application/json
 
 {
-  "title": 123,
-  "details": null,
-  "maximumAttendees": 1
+  "title": 11231223,
+  "details": "lorem ipsum",
+  "maximumAttendees": null
 }
