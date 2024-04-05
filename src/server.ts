@@ -1,6 +1,7 @@
 import "dotenv/config";
 import fastify from "fastify";
 import { z } from "zod";
+import { PrismaClient } from "@prisma/client";
 
 const app = fastify();
 const port = process.env.PORT || 3333;
@@ -11,6 +12,8 @@ app.post("/events", async (req, res) => {
     details: z.string().nullable(),
     maximumAttendees: z.number().int().positive().nullable(),
   });
+
+  const data = createEventSchema.parse(req.body);
 
   return "Hello NLW Unite!";
 });
