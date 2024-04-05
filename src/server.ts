@@ -7,7 +7,11 @@ const port = 3333;
 app.get("/", async (req, res) => {
   return "Hello NLW Unite!";
 });
-app.get("/teste", async (req, res) => {
+
+app.get("/users", async (req, res) => {
+  return "Hello teste!";
+});
+app.post("/users", async (req, res) => {
   return "Hello teste!";
 });
 
