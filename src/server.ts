@@ -18,6 +18,7 @@ app.post("/events", async (req, res) => {
 
   const data = createEventSchema.parse(req.body);
   const slug = generateSlug(data.title);
+  const eventWithSameSlug = await prisma.event.findUnique({ where: { slug } });
 
   const event = await prisma.event.create({
     data: {
