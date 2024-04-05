@@ -22,6 +22,10 @@ app.post("/events", async (req, res) => {
   const slug = generateSlug(title);
   const eventWithSameSlug = await prisma.event.findUnique({ where: { slug } });
 
+  if (eventWithSameSlug !== null) {
+    throw new Error("An event with the same name already exists");
+  }
+
   const event = await prisma.event.create({
     data: {
       title,
