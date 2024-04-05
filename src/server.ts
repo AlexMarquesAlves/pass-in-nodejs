@@ -5,7 +5,9 @@ const app = fastify();
 const port = process.env.PORT || 3333;
 
 app.post("/events", async (req, res) => {
-  return "Hello teste!";
+  console.log(req.body);
+
+  return "Hello NLW Unite!";
 });
 
 app.listen({ port }).then(() => {
