@@ -1,11 +1,16 @@
 import "dotenv/config";
 import fastify from "fastify";
+import { z } from "zod";
 
 const app = fastify();
 const port = process.env.PORT || 3333;
 
 app.post("/events", async (req, res) => {
-  console.log(req.body);
+  const createEventSchema = z.object({
+    title: z.string(),
+    details: z.string(),
+    maximumAttendees: z.number(),
+  });
 
   return "Hello NLW Unite!";
 });
