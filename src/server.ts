@@ -5,6 +5,9 @@ import { PrismaClient } from "@prisma/client";
 
 const app = fastify();
 const port = process.env.PORT || 3333;
+const prisma = new PrismaClient({
+  log: ["query"],
+});
 
 app.post("/events", async (req, res) => {
   const createEventSchema = z.object({
@@ -14,6 +17,14 @@ app.post("/events", async (req, res) => {
   });
 
   const data = createEventSchema.parse(req.body);
+
+  prisma.event.create({
+    data: {
+      title: data.title,
+      details: data.details,
+      slug: new Date().toISOString(),
+    },
+  });
 
   return "Hello NLW Unite!";
 });
