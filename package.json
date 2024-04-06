@@ -13,6 +13,9 @@
   },
   "author": "¡Duque",
   "license": "MIT",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "bugs": {
     "url": "https://github.com/AlexMarquesAlves/pass-in-nodejs/issues"
   },

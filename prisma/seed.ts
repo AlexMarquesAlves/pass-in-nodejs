@@ -3,9 +3,9 @@ import { prisma } from "../src/lib/prisma";
 export async function seed() {
   await prisma.event.create({
     data: {
-      id: "9e9bd979-9d10-4915-b339-3786b1634f33",
-      title: "NLW Unite Summit",
-      slug: "nlw-unite-summit",
+      id: "b798bd9c-9d6a-4027-aa66-2fe06e9dd040",
+      title: "Unite Summit",
+      slug: "unite-summit",
       details: "Um evento p/ devs apaixonados(as) por código!",
       maximumAttendees: 120,
     },
@@ -13,6 +13,6 @@ export async function seed() {
 }
 
 seed().then(() => {
-  console.log("Database seeded!");
+  console.log("Database 📊 seeded! 🌱");
   prisma.$disconnect();
 });
