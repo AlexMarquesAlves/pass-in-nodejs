@@ -1,10 +1,11 @@
 import { prisma } from "../src/lib/prisma";
 import { faker } from "@faker-js/faker";
 import { Prisma } from "@prisma/client";
+import { randomUUID } from "crypto";
 import dayjs from "dayjs";
 
 async function seed() {
-  const eventId = "9e9bd979-9d10-4915-b339-3786b1634f33";
+  const eventId = randomUUID();
 
   await prisma.event.deleteMany();
 
@@ -12,7 +13,7 @@ async function seed() {
     data: {
       id: eventId,
       title: "NLW Unite",
-      slug: "nlw-unite",
+      slug: "nlw-unite-2",
       details: "Um evento p/ devs apaixonados(as) por código!",
       maximumAttendees: 120,
     },
