@@ -38,6 +38,8 @@ export async function getAttendeeBadge(app: FastifyInstance) {
         throw new Error("Attendee not found.");
       }
 
+      const baseURL = `${request.protocol}://${request.hostname}`;
+
       return reply.send({ attendee });
     }
   );
