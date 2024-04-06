@@ -11,8 +11,8 @@ async function seed() {
   await prisma.event.create({
     data: {
       id: eventId,
-      title: "Unite Summit",
-      slug: "unite-summit",
+      title: "NLW Unite",
+      slug: "nlw-unite",
       details: "Um evento p/ devs apaixonados(as) por código!",
       maximumAttendees: 120,
     },
