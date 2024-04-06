@@ -25,6 +25,17 @@ export async function getEventAttendees(app: FastifyInstance) {
       const { pageIndex, query } = request.query;
 
       const attendees = await prisma.attendee.findMany({
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          createdAt: true,
+          checkIn: {
+            select: {
+              createdAt: true,
+            },
+          },
+        },
         where: {
           eventId,
         },
