@@ -2,6 +2,7 @@ import fastify from "fastify";
 
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
+import fastifyCors from "@fastify/cors";
 
 import {
   ZodTypeProvider,
@@ -18,6 +19,10 @@ import { registerForEvent } from "./routes/register-for-event";
 import { errorHandler } from "./error-handler";
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
+
+app.register(fastifyCors, {
+  origin: "*",
+});
 
 app.register(fastifySwagger, {
   swagger: {
