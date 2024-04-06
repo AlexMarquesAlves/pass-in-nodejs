@@ -3,6 +3,14 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { prisma } from "../lib/prisma";
 
+interface attendeeProps {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
+  checkIn: { createdAt: Date };
+}
+
 export async function getEventAttendees(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get(
     "/events/:eventId/attendees",
@@ -47,7 +55,7 @@ export async function getEventAttendees(app: FastifyInstance) {
       });
 
       return reply.send({
-        attendees: attendees.map((attendee) => {
+        attendees: attendees.map((attendee: attendeeProps) => {
           return {
             id: attendee.id,
             name: attendee.name,
