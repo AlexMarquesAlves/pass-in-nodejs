@@ -31,5 +31,6 @@ model Attendee {
 
   event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
 
+  @@unique([eventId, email])
   @@map("attendees")
 }
