@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
+import { prisma } from "../lib/prisma";
 
 export async function getAttendeeBadge(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -15,6 +16,23 @@ export async function getAttendeeBadge(app: FastifyInstance) {
         response: {},
       },
     },
-    (request, reply) => {}
+    async (request, reply) => {
+      const { attendeeId } = request.params;
+
+      const attendee = await prisma.attendee.findUnique({
+        select: {
+          name: true,
+          email: true,
+          event: {
+            select: {
+              title: true,
+            },
+          },
+        },
+        where: {
+          id: attendeeId,
+        },
+      });
+    }
   );
 }
