@@ -33,6 +33,12 @@ export async function getAttendeeBadge(app: FastifyInstance) {
           id: attendeeId,
         },
       });
+
+      if (attendee === null) {
+        throw new Error("Attendee not found.");
+      }
+
+      return reply.send({ attendee });
     }
   );
 }
