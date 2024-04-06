@@ -31,6 +31,18 @@ export async function getEvent(app: FastifyInstance) {
       const { eventId } = request.params;
 
       const event = await prisma.event.findUnique({
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          details: true,
+          maximumAttendees: true,
+          _count: {
+            select: {
+              attendees: true,
+            },
+          },
+        },
         where: {
           id: eventId,
         },
