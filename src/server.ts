@@ -15,6 +15,7 @@ import { getAttendeeBadge } from "./routes/get-attendee-badge";
 import { getEvent } from "./routes/get-event";
 import { getEventAttendees } from "./routes/get-event-attendees";
 import { registerForEvent } from "./routes/register-for-event";
+import { errorHandler } from "./error-handler";
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -45,6 +46,8 @@ app.register(getEvent);
 app.register(getAttendeeBadge);
 app.register(checkIn);
 app.register(getEventAttendees);
+
+app.setErrorHandler(errorHandler);
 
 const port = 3333;
 app.listen({ port, host: "0.0.0.0" }).then(() => {
