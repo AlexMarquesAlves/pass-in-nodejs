@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import {
+  ZodTypeProvider,
   serializerCompiler,
   validatorCompiler,
 } from "fastify-type-provider-zod";
@@ -10,7 +11,7 @@ import { getAttendeeBadge } from "./routes/get-attendee-badge";
 import { checkIn } from "./routes/check-in";
 import { getEventAttendees } from "./routes/get-event-attendees";
 
-const app = fastify();
+export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
@@ -23,6 +24,6 @@ app.register(checkIn);
 app.register(getEventAttendees);
 
 const port = 3333;
-app.listen({ port }).then(() => {
+app.listen({ port, host: "0.0.0.0" }).then(() => {
   console.log(`🚀 HTTP server  is listening on port ${port}!`);
 });
