@@ -46,7 +46,17 @@ export async function getEventAttendees(app: FastifyInstance) {
         },
       });
 
-      return reply.send({ attendees });
+      return reply.send({
+        attendees: attendees.map((attendee) => {
+          return {
+            id: attendee.id,
+            name: attendee.name,
+            email: attendee.email,
+            createdAt: attendee.createdAt,
+            checkedInAt: attendee.checkIn?.createdAt ?? null,
+          };
+        }),
+      });
     }
   );
 }
