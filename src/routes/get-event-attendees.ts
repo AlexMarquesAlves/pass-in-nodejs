@@ -13,11 +13,16 @@ export async function getEventAttendees(app: FastifyInstance) {
         params: z.object({
           eventId: z.string().uuid(),
         }),
+        querystring: z.object({
+          query: z.string().nullish(),
+          pageIndex: z.string().nullish().default("0").transform(Number),
+        }),
         response: {},
       },
     },
     async (request, reply) => {
       const { eventId } = request.params;
+      const { pageIndex, query } = request.query;
 
       const attendees = await prisma.attendee.findMany({
         where: {
