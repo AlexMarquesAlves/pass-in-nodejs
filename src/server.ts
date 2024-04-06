@@ -32,6 +32,10 @@ app.register(fastifySwagger, {
   transform: jsonSchemaTransform,
 });
 
+app.register(fastifySwaggerUI, {
+  routePrefix: "/docs",
+});
+
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
