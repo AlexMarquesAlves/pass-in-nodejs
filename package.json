@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "^5.12.1",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
