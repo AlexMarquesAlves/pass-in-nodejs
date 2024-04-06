@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/AlexMarquesAlves/pass-in-nodejs#readme",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.12.4",
     "prisma": "^5.12.1",
     "tsup": "^8.0.2",
@@ -36,6 +37,7 @@
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "^5.12.1",
+    "dayjs": "^1.11.10",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
     "fastify-type-provider-zod": "^1.1.9",
