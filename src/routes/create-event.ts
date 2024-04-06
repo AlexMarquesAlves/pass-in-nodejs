@@ -20,12 +20,6 @@ export async function createEvent(app: FastifyInstance) {
       },
     },
     async (req, res) => {
-      // const createEventSchema = z.object({
-      //   title: z.string().min(4),
-      //   details: z.string().nullable(),
-      //   maximumAttendees: z.number().int().positive().nullable(),
-      // });
-
       const { title, details, maximumAttendees } = req.body;
       const slug = generateSlug(title);
       const eventWithSameSlug = await prisma.event.findUnique({
