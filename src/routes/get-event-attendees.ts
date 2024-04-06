@@ -44,9 +44,16 @@ export async function getEventAttendees(app: FastifyInstance) {
             },
           },
         },
-        where: {
-          eventId,
-        },
+        where: query
+          ? {
+              eventId,
+              name: {
+                contains: query,
+              },
+            }
+          : {
+              eventId,
+            },
         take: 10,
         skip: pageIndex * 10,
         orderBy: {
