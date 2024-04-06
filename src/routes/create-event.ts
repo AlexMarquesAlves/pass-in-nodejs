@@ -4,7 +4,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma";
 import { FastifyInstance } from "fastify";
 
-export function createEvent(app: FastifyInstance) {
+export async function createEvent(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
     "/events",
     {
@@ -28,7 +28,7 @@ export function createEvent(app: FastifyInstance) {
 
       const { title, details, maximumAttendees } = req.body;
       const slug = generateSlug(title);
-      const eventWithSameSlug = await Prisma.event.findUnique({
+      const eventWithSameSlug = await prisma.event.findUnique({
         where: { slug },
       });
 
