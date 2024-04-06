@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
+import { prisma } from "../lib/prisma";
 
 export async function getEvent(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get(
@@ -26,6 +27,20 @@ export async function getEvent(app: FastifyInstance) {
         },
       },
     },
-    async (request, reply) => {}
+    async (request, reply) => {
+      const { eventId } = request.params;
+
+      const event = await prisma.event.findUnique({
+        where: {
+          id: eventId,
+        },
+      });
+
+      if (event === null) {
+        throw new Error("Event not found.");
+      }
+
+      return reply.send({ event });
+    }
   );
 }
