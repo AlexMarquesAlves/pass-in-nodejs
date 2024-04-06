@@ -27,6 +27,9 @@ app.withTypeProvider<ZodTypeProvider>().post(
         details: z.string().nullable(),
         maximumAttendees: z.number().int().positive().nullable(),
       }),
+      response: {
+        201: z.object({ eventId: z.string().uuid() }),
+      },
     },
   },
   async (req, res) => {
@@ -55,7 +58,7 @@ app.withTypeProvider<ZodTypeProvider>().post(
       },
     });
 
-    return res.status(201).send({ event: event.id });
+    return res.status(201).send({ eventId: event.id });
   }
 );
 
