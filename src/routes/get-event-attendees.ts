@@ -18,6 +18,14 @@ export async function getEventAttendees(app: FastifyInstance) {
     },
     async (request, reply) => {
       const { eventId } = request.params;
+
+      const attendees = await prisma.attendee.findMany({
+        where: {
+          eventId,
+        },
+      });
+
+      return reply.send({ attendees });
     }
   );
 }
