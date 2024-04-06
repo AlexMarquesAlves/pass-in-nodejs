@@ -8,6 +8,8 @@ export async function checkIn(app: FastifyInstance) {
     "/attendees/:attendeeId/check-in",
     {
       schema: {
+        summary: "Check-in an attendee",
+        tags: ["check-ins"],
         params: z.object({
           attendeeId: z.coerce.number().int(),
         }),
@@ -19,14 +21,14 @@ export async function checkIn(app: FastifyInstance) {
     async (request, reply) => {
       const { attendeeId } = request.params;
 
-      const attendeeCheckIn = await prisma.chechIn.findUnique({
+      const attendeeCheckIn = await prisma.checkIn.findUnique({
         where: {
           attendeeId,
         },
       });
 
       if (attendeeCheckIn !== null) {
-        throw new Error("Attendee already checked in");
+        throw new Error("Attendee already checked in!");
       }
 
       await prisma.checkIn.create({
