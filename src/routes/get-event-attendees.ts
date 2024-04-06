@@ -2,6 +2,7 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { prisma } from "../lib/prisma";
+import { request } from "http";
 
 interface attendeeProps {
   id: number;
@@ -16,7 +17,7 @@ export async function getEventAttendees(app: FastifyInstance) {
     "/events/:eventId/attendees",
     {
       schema: {
-        summary: "Get an event",
+        summary: "Get event attendees",
         tags: ["events"],
         params: z.object({
           eventId: z.string().uuid(),
@@ -25,7 +26,19 @@ export async function getEventAttendees(app: FastifyInstance) {
           query: z.string().nullish(),
           pageIndex: z.string().nullish().default("0").transform(Number),
         }),
-        response: {},
+        response: {
+          200: z.object({
+            attendees: z.array(
+              z.object({
+                id: z.number(),
+                name: z.string(),
+                email: z.string().email(),
+                createdAt: z.date(),
+                checkedInAt: z.date().nullable(),
+              })
+            ),
+          }),
+        },
       },
     },
     async (request, reply) => {
