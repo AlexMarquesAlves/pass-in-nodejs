@@ -18,7 +18,7 @@ const prisma = new PrismaClient({
   log: ["query"],
 });
 
-app.post("/events", async (req, res) => {
+app.withTypeProvider<ZodTypeProvider>().post("/events", async (req, res) => {
   const createEventSchema = z.object({
     title: z.string().min(4),
     details: z.string().nullable(),
