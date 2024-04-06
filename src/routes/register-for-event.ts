@@ -24,9 +24,9 @@ export async function registerForEvent(app: FastifyInstance) {
         },
       },
     },
-    async (req, res) => {
-      const { eventId } = req.params;
-      const { name, email } = req.body;
+    async (request, reply) => {
+      const { eventId } = request.params;
+      const { name, email } = request.body;
 
       const attendeeFromEmail = await prisma.attendee.findUnique({
         where: {
@@ -38,7 +38,7 @@ export async function registerForEvent(app: FastifyInstance) {
       });
 
       if (attendeeFromEmail !== null) {
-        throw new Error("Attendee already registered");
+        throw new Error("This e-mail is already registered for this event.");
       }
 
       const [event, amountOfAttendeesForEvent] = await Promise.all([
@@ -72,7 +72,7 @@ export async function registerForEvent(app: FastifyInstance) {
         },
       });
 
-      return res.status(201).send({ attendeeId: attendee.id });
+      return reply.status(201).send({ attendeeId: attendee.id });
     }
   );
 }
